@@ -1,60 +1,59 @@
+"""
+
+Script for uppercasing and reversing strings.
+
+Project: Python Boot Camp
+Author: OO
+
+"""
+
+# Using sys package for using cmd line rguments
 import sys
 
 if __name__ == "__main__":
 
     def rev_upp(input_strings):
-        # Function to reverse and uppercase strings
-        # Input must be a single string or a list
-
-        output = []
+        """Input must be a single string or a list."""
+        output_list = []
 
         # Check if list:
-        if type(input_strings) == list:
+        if isinstance(input_strings, list):
 
-            for s in input_strings:
+            for input_string in input_strings:
 
-                if type(s) == str:
+                if isinstance(input_string, str):
 
                     # Upper case:
-                    uppercased = s.upper()
+                    uppercased = input_string.upper()
 
                     # Reverse:
-                    n = len(uppercased)
-                    reversed = uppercased[n::-1]
+                    rev = uppercased[::-1]
 
-                    output.append(reversed)
+                    output_list.append(rev)
+
+                    if input_string == input_strings[-1]:
+                        return output_list
 
                 else:
-                    print("Input argument has to be a string or a list of strings")
-                    break
+                    raise Exception("Input arg must be a list of strings!")
 
-        elif type(input_strings) == str:
+    # Check if string:
+        elif isinstance(input_strings, str):
 
             # Upper case:
             uppercased = input_strings.upper()
 
             # Reverse:
-            n = len(uppercased)
-            reversed = uppercased[n::-1]
+            rev = uppercased[::-1]
 
-            output.append(reversed)
+            output_list.append(rev)
+
+            return output_list
 
         else:
-            print("Input argument has to be a string or a list of strings")
+            raise Exception("Input arg must be a string!")
 
-        return output
+    F_INPUT = sys.argv[1:]
 
-    f_input = sys.argv[1:]
-
-    output = rev_upp(f_input)
-    print(output)
-
-
-
-
-
-
-
-
-
-
+    OUTPUT_LIST = rev_upp(F_INPUT)
+    print(OUTPUT_LIST)
