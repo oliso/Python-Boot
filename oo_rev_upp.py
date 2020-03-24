@@ -10,48 +10,50 @@ Author: OO
 # Using sys package for using cmd line rguments
 import sys
 
-if __name__ == "__main__":
 
-    def rev_upp(input_strings):
-        """Input must be a single string or a list."""
-        output_list = []
+def rev_upp(input_strings):
+    """Input must be a single string or a list."""
+    output_list = []
 
-        # Check if list:
-        if isinstance(input_strings, list):
+    # Check if list:
+    if isinstance(input_strings, list):
 
-            for input_string in input_strings:
+        for input_string in input_strings:
 
-                if isinstance(input_string, str):
+            if isinstance(input_string, str):
 
-                    # Upper case:
-                    uppercased = input_string.upper()
+                # Upper case:
+                uppercased = input_string.upper()
 
-                    # Reverse:
-                    rev = uppercased[::-1]
+                # Reverse:
+                rev = uppercased[::-1]
 
-                    output_list.append(rev)
+                output_list.append(rev)
 
-                    if input_string == input_strings[-1]:
-                        return output_list
+                if input_string == input_strings[-1]:
+                    return output_list
 
-                else:
-                    raise Exception("Input arg must be a list of strings!")
+            else:
+                raise Exception("Input arg must be a list of strings!")
 
     # Check if string:
-        elif isinstance(input_strings, str):
+    elif isinstance(input_strings, str):
 
-            # Upper case:
-            uppercased = input_strings.upper()
+        # Upper case:
+        uppercased = input_strings.upper()
 
-            # Reverse:
-            rev = uppercased[::-1]
+        # Reverse:
+        rev = uppercased[::-1]
 
-            output_list.append(rev)
+        output_list.append(rev)
 
-            return output_list
+        return output_list
 
-        else:
-            raise Exception("Input arg must be a string!")
+    else:
+        raise Exception("Input arg must be a string!")
+
+
+if __name__ == "__main__":
 
     F_INPUT = sys.argv[1:]
 
