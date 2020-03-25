@@ -6,7 +6,7 @@ Author: OO
 
 """
 
-# Using sys package for using cmd line arguments
+# Using argparse package for using cmd line arguments
 import argparse
 
 
@@ -30,6 +30,9 @@ def rev_upp(rev_upp_option, input_string):
     """Reverse or uppercase a string (or both)."""
     output_string = ""
 
+    if rev_upp_option > 3 or rev_upp_option < 1:
+        raise Exception("Option out of bounds (1, 2 ,3)!")
+
     if not isinstance(input_string, str):
         raise Exception("Input must be a string!")
 
@@ -51,8 +54,12 @@ if __name__ == "__main__":
     PARSER = argparse.ArgumentParser("Reverse and uppercase a string.")
     PARSER.add_argument("rev_upp_optionID",
                         help="Choose: 1 = uppercase, 2 = reverse, 3 = both.",
-                        type=int)
-    PARSER.add_argument("string", help="String input.")
+                        type=int
+                        )
+    PARSER.add_argument("string",
+                        help="String input.",
+                        type=str
+                        )
 
     ARGS = PARSER.parse_args()
 
