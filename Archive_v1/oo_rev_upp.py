@@ -7,7 +7,7 @@ Author: OO
 
 """
 
-# Using sys package for using cmd line rguments
+# Using sys package for using cmd line arguments
 import sys
 
 

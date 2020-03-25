@@ -27,6 +27,9 @@ def test_invalid_rev_upp():
         assert ru.rev_upp(['Hello', 123])
         assert ru.rev_upp([1, 'Hello'])
         assert ru.rev_upp(3, 123)
+        assert ru.rev_upp(4, 'Hello')
+        assert ru.rev_upp(0, 'Hello')
+        assert ru.rev_upp('Hello', 1)
 
 
 # Test a range of valid inputs:
@@ -42,6 +45,10 @@ def test_invalid_rev():
         assert ru.rev([1, 'Hello'])
         assert ru.rev(['Hello', 123])
         assert ru.rev(123)
+        assert ru.rev(3, 123)
+        assert ru.rev(4, 'Hello')
+        assert ru.rev(0, 'Hello')
+        assert ru.rev('Hello', 1)
 
 
 # Test a range of valid inputs:
@@ -57,3 +64,7 @@ def test_invalid_upp():
         assert ru.upp([1, 'Hello'])
         assert ru.upp(['Hello', 123])
         assert ru.upp(123)
+        assert ru.upp(3, 123)
+        assert ru.upp(4, 'Hello')
+        assert ru.upp(0, 'Hello')
+        assert ru.upp('Hello', 1)
