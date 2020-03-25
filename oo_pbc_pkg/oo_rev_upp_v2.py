@@ -13,7 +13,7 @@ import argparse
 def upp(input_string):
     """Upper case a string."""
     if not isinstance(input_string, str):
-        raise Exception("Input must be a string!")
+        raise TypeError("Input must be a string!")
 
     return input_string.upper()
 
@@ -21,7 +21,7 @@ def upp(input_string):
 def rev(input_string):
     """Reverse a string."""
     if not isinstance(input_string, str):
-        raise Exception("Input must be a string!")
+        raise TypeError("Input must be a string!")
 
     return input_string[::-1]
 
@@ -30,11 +30,8 @@ def rev_upp(rev_upp_option, input_string):
     """Reverse or uppercase a string (or both)."""
     output_string = ""
 
-    if rev_upp_option > 3 or rev_upp_option < 1:
-        raise Exception("Option out of bounds (1, 2 ,3)!")
-
     if not isinstance(input_string, str):
-        raise Exception("Input must be a string!")
+        raise TypeError("Input must be a string!")
 
     output_string = input_string
 
@@ -54,6 +51,7 @@ if __name__ == "__main__":
     PARSER = argparse.ArgumentParser("Reverse and uppercase a string.")
     PARSER.add_argument("rev_upp_optionID",
                         help="Choose: 1 = uppercase, 2 = reverse, 3 = both.",
+                        choices=[1, 2, 3],
                         type=int
                         )
     PARSER.add_argument("string",
