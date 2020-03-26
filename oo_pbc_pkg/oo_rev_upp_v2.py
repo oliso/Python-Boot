@@ -58,6 +58,8 @@ def rev_upp_file(chosen_option, file_input, destination):
 
     output_file_path = os.path.join(destination, "rev_upp_output.txt")
 
+    output_text = ""
+
     print("Output:")
     print("=========================================================")
 
@@ -69,14 +71,16 @@ def rev_upp_file(chosen_option, file_input, destination):
             # Write new line into an output txt file using with:
             with open(output_file_path, "a") as write_txt:
                 write_txt.write("\n" + output_string)
+                output_text += output_string
         except IOError:
             print("Unable to open output file.")
             raise
 
-        print("=========================================================")
-        print("The above output has been written into rev_upp_output.txt")
-        print("and saved into " + destination)
-        return output_file_path
+    print("=========================================================")
+    print("The above output has been written into rev_upp_output.txt")
+    print("and saved into " + destination)
+
+    return output_text
 
 
 if __name__ == "__main__":
