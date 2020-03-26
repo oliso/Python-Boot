@@ -47,6 +47,38 @@ def rev_upp(rev_upp_option, input_string):
     return output_string
 
 
+def rev_upp_file(chosen_option, file_input, destination):
+    """Reverse or uppercase files, save output."""
+    try:
+        with open(file_input, "r") as read_txt:
+            read_lines = read_txt.readlines()
+    except IOError:
+        print("Unable to open input file.")
+        raise
+
+    output_file_path = os.path.join(destination, "rev_upp_output.txt")
+
+    print("Output:")
+    print("=========================================================")
+
+    for line in read_lines:
+        output_string = rev_upp(chosen_option, line)
+        print(output_string)
+
+        try:
+            # Write new line into an output txt file using with:
+            with open(output_file_path, "a") as write_txt:
+                write_txt.write("\n" + output_string)
+        except IOError:
+            print("Unable to open output file.")
+            raise
+
+        print("=========================================================")
+        print("The above output has been written into rev_upp_output.txt")
+        print("and saved into " + destination)
+        return output_file_path
+
+
 if __name__ == "__main__":
 
     # Set up command line argument parser and define required arguments
@@ -61,9 +93,8 @@ if __name__ == "__main__":
                         type=str
                         )
     PARSER.add_argument('directory',
-                        help="Custom output file destination (optional). "
-                        + "Uses current working directory by default. "
-                        + "Expected format: Z:\\...\\DestinationFolder",
+                        help="Custom output file destination path (optional). "
+                        + "Uses current working directory by default. ",
                         type=str,
                         nargs='?',
                         default=os.getcwd()
@@ -71,26 +102,8 @@ if __name__ == "__main__":
 
     ARGS = PARSER.parse_args()
     CHOSEN_OPTION = ARGS.rev_upp_optionID
-    F_INPUT = ARGS.file_name
+    FILE_INPUT = ARGS.file_name
     DEST = ARGS.directory
 
     # Read lines of the file provided using with:
-    with open(F_INPUT, "r") as READ_TXT:
-        READ_LINES = READ_TXT.readlines()
-
-    OUTPUT_FILE_STRING = DEST + "\\rev_upp_output.txt"
-
-    print("Output:")
-    print("=========================================================")
-
-    for line in READ_LINES:
-        OUTPUT_STRING = rev_upp(CHOSEN_OPTION, line)
-        print(OUTPUT_STRING)
-
-        # Write new line into an output txt file using with:
-        with open(OUTPUT_FILE_STRING, "a") as WRITE_TXT:
-            NewLine = WRITE_TXT.write("\n" + OUTPUT_STRING)
-
-    print("=========================================================")
-    print("The above output has been written into rev_upp_output.txt")
-    print("and saved into " + DEST)
+    rev_upp_file(CHOSEN_OPTION, FILE_INPUT, DEST)
